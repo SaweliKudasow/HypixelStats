@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header></header>
+
+    <div class="search">
+        <input type="text" placeholder="Nickname" id="getPlayer" autocomplete="off" onkeypress="return lettersNumbers(event)">
+        <button id="checkButton">Search</button>
+    </div>
+
+    <div>
+        <p id="message">Write a nickname!</p>
+    </div>
+
+    <div class="container" id="container">
+        <p class="playerName"></p>
+        <p id="session"></p>
+        <p id="gameType"></p>
+        <p id="mode"></p>
+        <p id="map"></p>
+    </div>
+
+    <div class="container2">
+        <p id="guild"></p>
+        <p id="guildName"></p>
+    </div>
+
+    <div class="container3">
+        <p>Created at:</p>
+        <p id="created"></p>
+    </div>
+
+    <script src="tapping.js"></script>
+    <script src="getPlayer.js" type="module"></script>
+    <script src="updateStatus.js" type="module"></script>
+    <script src="guild.js" type="module"></script>
+    <script src="themes.js"></script>
+
+</body>
+</html>
