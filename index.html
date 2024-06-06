@@ -4,25 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="checkOnline/style.css"> -->
     <title>Document</title>
 </head>
 <body>
-    <!--
-    <div class="container">
-        <p class="playerName"></p>
-        <p id="session"></p>
-    </div> -->
-    
-    <p>Show SkyBlock stats for</p>
 
-    <div class="search">
-        <input type="text" placeholder="Username" id="getPlayer" autocomplete="off" onkeypress="return lettersNumbers(event)">
-        <button id="checkButton">Search</button>
+    <div class="SearchContainer">
+        <input type="text" placeholder="Nickname">
+        <p>Not found.</p>
+        <button id="searchButton">Search</button>
     </div>
 
-    <script src="keys.js"></script>
-    <script src="checkOnline/getPlayer.js" type="module"></script>
-    <script src="checkOnline/updateStatus.js" type="module"></script>
+    <div class="MainInfo">
+        <p id="username">username</p>
+        <p id="rank">Rank</p>
+        <p>ID:</p>
+        <p id="id">...</p>
+    </div>
+
+    <div class="RestInfo1">
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </div>
+
+    <div class="RestInfo2">
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+        <p>...</p>
+    </div>
+
+    <script src="test.js"></script>
+
+    <!--
+    <script src="tapping.js"></script>
+    <script src="getPlayer.js" type="module"></script>
+    <script src="updateStatus.js" type="module"></script>
+    <script src="guild.js" type="module"></script>
+    <script src="themes.js"></script> -->
+
 </body>
 </html>
