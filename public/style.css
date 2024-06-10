@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+h1 {
+    position: absolute;
+    top: 10%;
+    color: #00b4d8;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #06d6a0;
+}
+
+.getInfo {
+    position: absolute;
+    top: 25%;
+}
+
+/* Input field */
+
+input {
+    padding: 6px;
+    font-size: 16px;
+    border-radius: 8px;
+    color: #00b4d8;;
+    border-color: #00b4d8;
+    transition: transform 0.3s ease;
+}
+
+input:hover {
+    transform: scale(1.1);
+}
+
+input:focus {
+    outline: none;
+}
+
+/* Search button */
+
+button {
+    padding: 4px;
+    font-size: 18px;
+    background-color: #00000000;
+    color: #48cae4;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.3);
+}
