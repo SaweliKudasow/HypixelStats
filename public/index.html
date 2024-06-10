@@ -8,16 +8,46 @@
     <title>Player Info</title>
 </head>
 <body>
-    <h1>Enter Player Username</h1>
-    <div class="getInfo">
+    <h1 id="text">Enter Player Username</h1>
+    <div class="Search">
         <input type="text" id="username" placeholder="Enter username" autocomplete="off">
         <button onclick="getPlayerInfo()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <p id="errorMessage">-</p>
     </div>
-    
-    <p id="playerName">Player Name: </p>
-    <p id="playerId">Player ID: </p>
-    <p id="playerRank">Player Rank: </p>
-    <p id="playerLevel">Player Level: </p>
+
+    <table  id="table">
+        <tr>
+            <th>-</th>
+            <th>-</th>
+            <th>-</th>
+        </tr>
+        <tr>
+            <td>Player Name</td>
+            <td>-</td>
+            <td id="playerName">-</td>
+        </tr>
+        <tr>
+            <td>Player ID</td>
+            <td>-</td>
+            <td id="playerId">-</td>
+        </tr>
+        <tr>
+            <td>Player Rank</td>
+            <td>-</td>
+            <td id="playerRank">-</td>
+        </tr>
+        <tr>
+            <td>Player Level</td>
+            <td>-</td>
+            <td id="playerLevel">-</td>
+        </tr>
+        <!--
+        <tr>
+            <td>Player Session</td>
+            <td>-</td>
+            <td id="playerSession">-</td>
+        </tr> -->
+    </table>
     
     <script src="main.js"></script>
 </body>

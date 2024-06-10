@@ -1,58 +1,130 @@
 body {
+    font-family: sans-serif;
     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
+
+/* Text */
 
 h1 {
     position: absolute;
     top: 10%;
-    color: #00b4d8;
+    color: white;
+    background-color: black;
     padding: 10px;
     border-radius: 15px;
-    background-color: #06d6a0;
+    transition: all 1s ease;
+    opacity: 1;
 }
 
-.getInfo {
+h1.hide {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+/* --Search-- */
+
+.Search {
     position: absolute;
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 15px;
     top: 25%;
+    transition: all 1s ease;
+}
+
+.Search.anim {
+    transform: translateY(-60px);
 }
 
 /* Input field */
 
-input {
+.Search input {
     padding: 6px;
     font-size: 16px;
     border-radius: 8px;
-    color: #00b4d8;;
-    border-color: #00b4d8;
+    color: black;;
+    border-color: black;
     transition: transform 0.3s ease;
 }
 
-input:hover {
+.Search input:hover {
     transform: scale(1.1);
 }
 
-input:focus {
+.Search input:focus {
     outline: none;
 }
 
 /* Search button */
 
-button {
+.Search button {
     padding: 4px;
     font-size: 18px;
     background-color: #00000000;
-    color: #48cae4;
+    color: black;
     border: none;
     cursor: pointer;
     margin-left: 10px;
     transition: transform 0.3s ease;
 }
 
-button:hover {
+.Search button:hover {
     transform: scale(1.3);
+}
+
+/* Error Message */
+
+.Search p {
+    color: red;
+    font-size: 16px;
+    display: none; /* flex */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Table */
+
+table {
+    display: table; /* table */
+    width: 50%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 50px;
+    transition: all 2s ease;
+    opacity: 0;
+}
+
+table.up {
+    opacity: 1;
+    transform: translateY(-50px);
+}
+
+table.down {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+th, td {
+    border-bottom: 2px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+tr:last-child td:first-child{
+    border-bottom: none;
+}
+
+tr:last-child td:nth-child(2){
+    border-bottom: none;
+}
+
+tr:last-child td:last-child{
+    border-bottom: none;
 }
