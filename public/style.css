@@ -1,3 +1,8 @@
+:root {
+    --bg-color: white;
+    --text-color: black;
+}
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -5,6 +10,36 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.5s ease;
+}
+
+body.dark-theme {
+    --bg-color: black;
+    --text-color: white;
+}
+
+/* Theme switch button */
+
+#switchTheme {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    color: var(--text-color);
+    transition: transform 0.2s ease;
+}
+
+#switchTheme:hover {
+    transform: scale(1.3);
+}
+
+#switchTheme.shrink {
+    transform: scale(1.0);
 }
 
 /* Text */
@@ -12,9 +47,8 @@ body {
 h1 {
     position: absolute;
     top: 10%;
-    color: white;
-    background-color: black;
     padding: 10px;
+    border: 2px solid;
     border-radius: 15px;
     transition: all 1s ease;
     opacity: 1;
@@ -46,8 +80,9 @@ h1.hide {
     padding: 6px;
     font-size: 16px;
     border-radius: 8px;
-    color: black;;
-    border-color: black;
+    background-color: var(--bg-color);
+    border-color: var(--text-color);
+    color: var(--text-color);
     transition: transform 0.3s ease;
 }
 
@@ -64,16 +99,20 @@ h1.hide {
 .Search button {
     padding: 4px;
     font-size: 18px;
-    background-color: #00000000;
-    color: black;
+    background: none;
+    color: var(--text-color);
     border: none;
     cursor: pointer;
     margin-left: 10px;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 .Search button:hover {
     transform: scale(1.3);
+}
+
+.Search button.shrink {
+    transform: scale(1.0);
 }
 
 /* Error Message */
@@ -117,14 +156,6 @@ th, td {
     text-align: center;
 }
 
-tr:last-child td:first-child{
-    border-bottom: none;
-}
-
-tr:last-child td:nth-child(2){
-    border-bottom: none;
-}
-
-tr:last-child td:last-child{
+tr:last-child td:first-child, tr:last-child td:nth-child(2), tr:last-child td:last-child{
     border-bottom: none;
 }

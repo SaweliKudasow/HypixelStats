@@ -8,10 +8,11 @@
     <title>Player Info</title>
 </head>
 <body>
+    <button id="switchTheme"><i id="themeIcon" class="fa-solid fa-sun"></i></button>
     <h1 id="text">Enter Player Username</h1>
     <div class="Search">
-        <input type="text" id="username" placeholder="Enter username" autocomplete="off">
-        <button onclick="getPlayerInfo()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <input type="text" id="username" placeholder="Enter username" autocomplete="off" maxlength="16">
+        <button onclick="getPlayerInfo()" id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
         <p id="errorMessage">-</p>
     </div>
 
@@ -49,6 +50,8 @@
         </tr> -->
     </table>
     
+    <script src="themeSwitcher.js"></script>
+    <script src="anim.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
