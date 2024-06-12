@@ -48,6 +48,8 @@ function displayPlayerInfo(data) {
     }
     table.classList.add('up');
 
+    document.body.style.overflow = '';
+
     document.getElementById('text').classList.add('hide');
     document.querySelector('.Search').classList.add('anim');
 
@@ -69,4 +71,7 @@ function displayError(message) {
         table.classList.remove('up');
     }
     table.classList.add('down');
+
+    window.scrollTo(0, 0);
+    document.body.style.overflow = 'hidden';
 }

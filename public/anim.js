@@ -29,3 +29,9 @@ switchTheme.addEventListener('mouseup', function() {
 switchTheme.addEventListener('mouseleave', function() {
     this.classList.remove('shrink');
 });
+
+// overflow hidden on page load
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.style.overflow = 'hidden';
+})

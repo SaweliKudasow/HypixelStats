@@ -1,5 +1,5 @@
 :root {
-    --bg-color: white;
+    --bg-color: rgb(247, 247, 247);
     --text-color: black;
 }
 
@@ -9,14 +9,14 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: all 0.5s ease;
 }
 
 body.dark-theme {
-    --bg-color: black;
+    --bg-color: rgb(56, 56, 56);
     --text-color: white;
 }
 
@@ -135,9 +135,10 @@ table {
     border: 2px solid #ccc;
     border-radius: 15px;
     overflow: hidden;
-    margin-top: 50px;
+    margin-top: 20%;
     transition: all 2s ease;
     opacity: 0;
+    z-index: -1;
 }
 
 table.up {
