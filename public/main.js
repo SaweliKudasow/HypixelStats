@@ -1,6 +1,12 @@
 let errorMessage = document.getElementById('errorMessage');
 let table = document.getElementById('table');
 
+document.getElementById('username').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        getPlayerInfo();
+    }
+});
+
 async function getPlayerInfo() {
     const username = document.getElementById('username').value;
 
@@ -57,8 +63,11 @@ function displayPlayerInfo(data) {
     document.getElementById('playerId').textContent = data.id;
     document.getElementById('playerRank').textContent = data.rank;
     document.getElementById('playerLevel').textContent = data.level;
-    // let i = data.status ? "Online" : "Offline";
-    // document.getElementById('playerSession').textContent = i;
+    console.log(data.status);
+    let i = data.status.online ? "Online" : "Offline";
+    document.getElementById('playerSession').textContent = i;
+    document.getElementById('playersCount').textContent = `Players: ${data.playersCount}`;
+    document.getElementById('playersCount').classList.add('wakeup');
 }
 
 function displayError(message) {

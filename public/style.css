@@ -42,6 +42,25 @@ body.dark-theme {
     transform: scale(1.0);
 }
 
+/* Players count */
+
+#playersCount {
+    font-size: 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 15px;
+    transition: all 1s ease;
+    opacity: 0;
+}
+
+#playersCount.wakeup {
+    opacity: 1;
+}
+
 /* Text */
 
 h1 {

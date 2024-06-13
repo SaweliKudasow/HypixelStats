@@ -18,14 +18,16 @@ app.post('/getPlayerInfo', async (req, res) => {
         const player = await client.player.uuid(profile.id);
         const rank = getPlayerRank(player);
         const hypixelLevel = getNetworkLevel(player);
-        // const status = await client.status.uuid(profile.id);
+        const status = await client.status.uuid(profile.id);
+        const playersCount = await client.gameCounts();
 
         res.json({
             name: profile.name,
             id: profile.id,
             rank: rank.cleanName,
             level: hypixelLevel.level,
-            // status: status.session.online
+            status: status,
+            playersCount: playersCount.playerCount
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
