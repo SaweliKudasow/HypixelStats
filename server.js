@@ -19,7 +19,7 @@ app.post('/getPlayerInfo', async (req, res) => {
         const rank = getPlayerRank(player);
         const hypixelLevel = getNetworkLevel(player);
         const status = await client.status.uuid(profile.id);
-        const playersCount = await client.gameCounts();
+        const playersCount = await getPlayersCount();
 
         res.json({
             name: profile.name,
@@ -27,7 +27,7 @@ app.post('/getPlayerInfo', async (req, res) => {
             rank: rank.cleanName,
             level: hypixelLevel.level,
             status: status,
-            playersCount: playersCount.playerCount
+            playersCount: playersCount
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -42,6 +42,24 @@ async function getPlayer(username) {
         return response.data;
     } catch (error) {
         throw new Error('Player not found');
+    }
+}
+
+async function getPlayersCount() {
+    try {
+        const response = await axios.get('https://api.hypixel.net/counts', {
+            headers: {
+                'API-Key': token.token
+            }
+        });
+        
+        if (response.data && response.data.success && response.data.playerCount !== undefined) {
+            return response.data.playerCount;
+        }
+        return 0;
+    } catch (error) {
+        console.error('Error fetching player count:', error.message);
+        return 0;
     }
 }
 
