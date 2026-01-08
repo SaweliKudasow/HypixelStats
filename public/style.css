@@ -1,10 +1,17 @@
+@font-face {
+    font-family: 'Minecraft';
+    src: url('fonts/Minecraft.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --bg-color: rgb(247, 247, 247);
     --text-color: black;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Minecraft', sans-serif;
     margin: 0;
     height: 100vh;
     display: flex;
@@ -98,11 +105,36 @@ h1.hide {
 .Search input {
     padding: 6px;
     font-size: 16px;
+    font-family: 'Minecraft', sans-serif;
     border-radius: 8px;
     background-color: var(--bg-color);
     border-color: var(--text-color);
     color: var(--text-color);
     transition: transform 0.3s ease;
+}
+
+.Search input::placeholder {
+    font-family: 'Minecraft', sans-serif;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.Search input::-webkit-input-placeholder {
+    font-family: 'Minecraft', sans-serif;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.Search input::-moz-placeholder {
+    font-family: 'Minecraft', sans-serif;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.Search input:-ms-input-placeholder {
+    font-family: 'Minecraft', sans-serif;
+    color: var(--text-color);
+    opacity: 0.6;
 }
 
 .Search input:hover {
