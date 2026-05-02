@@ -4,7 +4,7 @@ const axios = require('axios');
 const token = require('./token.json');
 
 const app = express();
-const port = 3000;
+const port = 3010;
 const client = new Client(token.token);
 
 app.use(express.static('public'));
