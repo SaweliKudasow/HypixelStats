@@ -1,5 +1,5 @@
 let errorMessage = document.getElementById('errorMessage');
-let table = document.getElementById('table');
+let resultsPanel = document.getElementById('playerResults');
 
 document.getElementById('username').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
@@ -17,7 +17,7 @@ async function getPlayerInfo() {
         try {
             const data = await fetchPlayerInfo(username);
             displayPlayerInfo(data);
-            return; // exit
+            return;
         } catch (error) {
             attempts++;
             console.error(`Attempt ${attempts} failed:`, error);
@@ -47,39 +47,50 @@ async function fetchPlayerInfo(username) {
 }
 
 function displayPlayerInfo(data) {
+    errorMessage.textContent = '';
     errorMessage.style.display = 'none';
 
-    if (table.classList.contains('down')) {
-        table.classList.remove('down');
+    if (resultsPanel.classList.contains('down')) {
+        resultsPanel.classList.remove('down');
     }
-    table.classList.add('up');
+    resultsPanel.classList.add('up');
 
     document.body.style.overflow = '';
 
-    document.getElementById('text').classList.add('hide');
+    document.querySelector('.hero').classList.add('hide');
     document.querySelector('.Search').classList.add('anim');
 
     document.getElementById('playerName').textContent = data.name;
     document.getElementById('playerId').textContent = data.id;
     document.getElementById('playerRank').textContent = data.rank;
     document.getElementById('playerLevel').textContent = data.level;
-    console.log(data.status);
-    let i = data.status.online ? "Online" : "Offline";
-    document.getElementById('playerSession').textContent = i;
-    document.getElementById('playersCount').textContent = `Players: ${data.playersCount}`;
-    document.getElementById('playersCount').classList.add('wakeup');
+
+    const sessionEl = document.getElementById('playerSession');
+    const online = Boolean(data.status && data.status.online);
+    sessionEl.textContent = online ? 'Online' : 'Offline';
+    sessionEl.classList.remove('online', 'offline');
+    sessionEl.classList.add(online ? 'online' : 'offline');
+
+    const countEl = document.getElementById('playersCount');
+    const valueEl = countEl.querySelector('.live-value');
+    if (valueEl) {
+        valueEl.textContent = String(data.playersCount);
+    } else {
+        countEl.textContent = `Players: ${data.playersCount}`;
+    }
+    countEl.classList.add('wakeup');
 }
 
 function displayError(message) {
     console.log(message);
 
     errorMessage.textContent = message;
-    errorMessage.style.display = 'flex';
+    errorMessage.style.display = 'block';
 
-    if (table.classList.contains('up')) {
-        table.classList.remove('up');
+    if (resultsPanel.classList.contains('up')) {
+        resultsPanel.classList.remove('up');
     }
-    table.classList.add('down');
+    resultsPanel.classList.add('down');
 
     window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';

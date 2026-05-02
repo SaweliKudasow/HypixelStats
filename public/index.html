@@ -3,48 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/760b11fa71.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Player Info</title>
+    <title>Hypixel Stats</title>
 </head>
 <body>
-    <p id="playersCount">Players:</p>
-    <button id="switchTheme"><i id="themeIcon" class="fa-solid fa-sun"></i></button>
-    <h1 id="text">Enter Player Username</h1>
-    <div class="Search">
-        <input type="text" id="username" placeholder="Enter username" autocomplete="off" maxlength="16">
-        <button onclick="getPlayerInfo()" id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <p id="errorMessage">-</p>
-    </div>
+    <div class="bg-gradient" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
 
-    <table  id="table">
-        <tr>
-            <td>Player Name</td>
-            <td>-</tdh>
-            <td id="playerName">-</td>
-        </tr>
-        <tr>
-            <td>Player ID</td>
-            <td>-</td>
-            <td id="playerId">-</td>
-        </tr>
-        <tr>
-            <td>Player Rank</td>
-            <td>-</td>
-            <td id="playerRank">-</td>
-        </tr>
-        <tr>
-            <td>Player Level</td>
-            <td>-</td>
-            <td id="playerLevel">-</td>
-        </tr>
-        <tr>
-            <td>Player Session</td>
-            <td>-</td>
-            <td id="playerSession">-</td>
-        </tr>
-    </table>
-    
+    <header class="top-bar">
+        <div class="live-pill" id="playersCount" role="status">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span class="live-label">Hypixel online</span>
+            <span class="live-value">—</span>
+        </div>
+        <button type="button" id="switchTheme" class="icon-btn theme-toggle" aria-label="Toggle theme">
+            <i id="themeIcon" class="fa-solid fa-sun" aria-hidden="true"></i>
+        </button>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="hero-brand">
+                <img src="pictures/hypixelPicture.jpg" alt="" class="hero-logo" width="56" height="56">
+                <div class="hero-titles">
+                    <h1 id="text" class="hero-title">Hypixel Stats</h1>
+                    <p class="hero-sub">Minecraft username → rank, level &amp; session</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card search-card">
+            <label class="sr-only" for="username">Minecraft username</label>
+            <div class="Search search-row">
+                <div class="input-wrap">
+                    <i class="fa-solid fa-user input-icon" aria-hidden="true"></i>
+                    <input type="text" id="username" placeholder="Enter username" autocomplete="off" maxlength="16" spellcheck="false">
+                </div>
+                <button type="button" onclick="getPlayerInfo()" id="searchButton" class="search-btn">
+                    <span class="search-btn-text">Search</span>
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p id="errorMessage" class="error-message" role="alert"></p>
+        </section>
+
+        <section id="playerResults" class="results-panel" aria-live="polite">
+            <h2 class="results-heading">Player overview</h2>
+            <dl class="stats-grid">
+                <div class="stat">
+                    <dt class="stat-label">Username</dt>
+                    <dd class="stat-value" id="playerName">—</dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat-label">UUID</dt>
+                    <dd class="stat-value stat-mono" id="playerId">—</dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat-label">Rank</dt>
+                    <dd class="stat-value"><span class="rank-pill" id="playerRank">—</span></dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat-label">Network level</dt>
+                    <dd class="stat-value" id="playerLevel">—</dd>
+                </div>
+                <div class="stat stat-full">
+                    <dt class="stat-label">Session</dt>
+                    <dd class="stat-value"><span class="session-badge" id="playerSession">—</span></dd>
+                </div>
+            </dl>
+        </section>
+    </main>
+
     <script src="themeSwitcher.js"></script>
     <script src="anim.js"></script>
     <script src="main.js"></script>

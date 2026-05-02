@@ -1,5 +1,3 @@
-/* Search button animation */
-
 const searchButton = document.getElementById('searchButton');
 
 searchButton.addEventListener('mousedown', function() {
@@ -14,8 +12,6 @@ searchButton.addEventListener('mouseleave', function() {
     this.classList.remove('shrink');
 });
 
-/* Theme switch button animation */
-
 const switchTheme = document.getElementById('switchTheme');
 
 switchTheme.addEventListener('mousedown', function() {
@@ -29,9 +25,3 @@ switchTheme.addEventListener('mouseup', function() {
 switchTheme.addEventListener('mouseleave', function() {
     this.classList.remove('shrink');
 });
-
-// overflow hidden on page load
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.body.style.overflow = 'hidden';
-})
