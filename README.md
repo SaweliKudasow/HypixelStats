@@ -39,7 +39,7 @@ Or:
 node server.js
 ```
 
-Open **http://localhost:3000** in your browser.
+Open **http://localhost:3010** in your browser.
 
 ## Usage
 
