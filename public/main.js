@@ -1,6 +1,39 @@
 let errorMessage = document.getElementById('errorMessage');
 let resultsPanel = document.getElementById('playerResults');
 
+const tabOverview = document.getElementById('tab-overview');
+const tabAchievements = document.getElementById('tab-achievements');
+const panelOverview = document.getElementById('panel-overview');
+const panelAchievements = document.getElementById('panel-achievements');
+
+function setResultsTab(which) {
+    const isOverview = which === 'overview';
+    tabOverview.setAttribute('aria-selected', String(isOverview));
+    tabAchievements.setAttribute('aria-selected', String(!isOverview));
+    tabOverview.classList.toggle('tab-btn-active', isOverview);
+    tabAchievements.classList.toggle('tab-btn-active', !isOverview);
+    panelOverview.hidden = !isOverview;
+    panelAchievements.hidden = isOverview;
+}
+
+tabOverview.addEventListener('click', () => setResultsTab('overview'));
+tabAchievements.addEventListener('click', () => setResultsTab('achievements'));
+
+tabOverview.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        tabAchievements.focus();
+        setResultsTab('achievements');
+    }
+});
+tabAchievements.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        tabOverview.focus();
+        setResultsTab('overview');
+    }
+});
+
 document.getElementById('username').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         getPlayerInfo();
@@ -46,6 +79,22 @@ async function fetchPlayerInfo(username) {
     return response.json();
 }
 
+function formatHypixelTimestamp(ms) {
+    if (ms == null || Number.isNaN(ms)) return '—';
+    const d = new Date(ms);
+    return d.toLocaleString(undefined, {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+    });
+}
+
+function formatAchievementKey(key) {
+    return String(key)
+        .split('_')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+        .join(' ');
+}
+
 function displayPlayerInfo(data) {
     errorMessage.textContent = '';
     errorMessage.style.display = 'none';
@@ -71,6 +120,49 @@ function displayPlayerInfo(data) {
     sessionEl.classList.remove('online', 'offline');
     sessionEl.classList.add(online ? 'online' : 'offline');
 
+    document.getElementById('playerKarma').textContent =
+        data.karma != null ? String(data.karma) : '—';
+    document.getElementById('playerFirstLogin').textContent = formatHypixelTimestamp(data.firstLogin);
+    document.getElementById('playerLastLogin').textContent = formatHypixelTimestamp(data.lastLogin);
+
+    const points = data.achievementPoints ?? 0;
+    document.getElementById('playerAchievementPoints').textContent = String(points);
+
+    const oneTime = Array.isArray(data.achievementsOneTime) ? data.achievementsOneTime : [];
+    document.getElementById('oneTimeAchievementsCount').textContent = String(oneTime.length);
+
+    const oneTimeList = document.getElementById('achievementsOneTimeList');
+    oneTimeList.replaceChildren();
+    [...oneTime].sort((a, b) => a.localeCompare(b)).forEach((id) => {
+        const li = document.createElement('li');
+        li.textContent = formatAchievementKey(id);
+        oneTimeList.appendChild(li);
+    });
+
+    const tiered = data.achievementsTiered && typeof data.achievementsTiered === 'object'
+        ? data.achievementsTiered
+        : {};
+    const tieredEntries = Object.entries(tiered).filter(
+        ([, tier]) => typeof tier === 'number' && tier > 0
+    );
+    document.getElementById('tieredAchievementsCount').textContent = String(tieredEntries.length);
+
+    const tieredList = document.getElementById('achievementsTieredList');
+    tieredList.replaceChildren();
+    tieredEntries
+        .sort(([a], [b]) => a.localeCompare(b))
+        .forEach(([key, tier]) => {
+            const li = document.createElement('li');
+            const label = document.createElement('span');
+            label.textContent = formatAchievementKey(key);
+            const tierSpan = document.createElement('span');
+            tierSpan.className = 'tiered-tier';
+            tierSpan.textContent = ` · tier ${tier}`;
+            li.appendChild(label);
+            li.appendChild(tierSpan);
+            tieredList.appendChild(li);
+        });
+
     const countEl = document.getElementById('playersCount');
     const valueEl = countEl.querySelector('.live-value');
     if (valueEl) {
@@ -79,6 +171,8 @@ function displayPlayerInfo(data) {
         countEl.textContent = `Players: ${data.playersCount}`;
     }
     countEl.classList.add('wakeup');
+
+    setResultsTab('overview');
 }
 
 function displayError(message) {

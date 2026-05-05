@@ -1,11 +1,19 @@
 const themeButton = document.getElementById('switchTheme');
 const themeIcon = document.getElementById('themeIcon');
+const root = document.documentElement;
+
+function applySavedTheme() {
+    if (localStorage.getItem('theme') === 'dark') {
+        root.classList.add('dark-theme');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+}
 
 themeButton.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
+    root.classList.toggle('dark-theme');
 
-    // Savingthe theme preference in localstorage
-    if (document.body.classList.contains('dark-theme')) {
+    if (root.classList.contains('dark-theme')) {
         themeIcon.classList.remove('fa-sun');
         themeIcon.classList.add('fa-moon');
         localStorage.setItem('theme', 'dark');
@@ -16,12 +24,8 @@ themeButton.addEventListener('click', () => {
     }
 });
 
-// set the theme on page load
-window.addEventListener('load', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme && savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-    }
-});
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applySavedTheme);
+} else {
+    applySavedTheme();
+}

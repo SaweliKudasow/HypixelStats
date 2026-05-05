@@ -21,13 +21,22 @@ app.post('/getPlayerInfo', async (req, res) => {
         const status = await client.status.uuid(profile.id);
         const playersCount = await getPlayersCount();
 
+        const achievementsOneTime = player.achievementsOneTime ?? [];
+        const achievementsTiered = player.achievements ?? {};
+
         res.json({
             name: profile.name,
             id: profile.id,
             rank: rank.cleanName,
             level: hypixelLevel.level,
             status: status,
-            playersCount: playersCount
+            playersCount: playersCount,
+            achievementPoints: player.achievementPoints ?? 0,
+            achievementsOneTime,
+            achievementsTiered,
+            karma: player.karma ?? null,
+            firstLogin: player.firstLogin ?? null,
+            lastLogin: player.lastLogin ?? null
         });
     } catch (error) {
         res.status(500).json({ error: error.message });

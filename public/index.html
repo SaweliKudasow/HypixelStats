@@ -52,29 +52,72 @@
         </section>
 
         <section id="playerResults" class="results-panel" aria-live="polite">
-            <h2 class="results-heading">Player overview</h2>
-            <dl class="stats-grid">
-                <div class="stat">
-                    <dt class="stat-label">Username</dt>
-                    <dd class="stat-value" id="playerName">—</dd>
-                </div>
-                <div class="stat">
-                    <dt class="stat-label">UUID</dt>
-                    <dd class="stat-value stat-mono" id="playerId">—</dd>
-                </div>
-                <div class="stat">
-                    <dt class="stat-label">Rank</dt>
-                    <dd class="stat-value"><span class="rank-pill" id="playerRank">—</span></dd>
-                </div>
-                <div class="stat">
-                    <dt class="stat-label">Network level</dt>
-                    <dd class="stat-value" id="playerLevel">—</dd>
-                </div>
-                <div class="stat stat-full">
-                    <dt class="stat-label">Session</dt>
-                    <dd class="stat-value"><span class="session-badge" id="playerSession">—</span></dd>
-                </div>
-            </dl>
+            <div class="results-tabs" role="tablist" aria-label="Player profile sections">
+                <button type="button" class="tab-btn tab-btn-active" role="tab" id="tab-overview" aria-selected="true" aria-controls="panel-overview">Overview</button>
+                <button type="button" class="tab-btn" role="tab" id="tab-achievements" aria-selected="false" aria-controls="panel-achievements">Achievements</button>
+            </div>
+            <div id="panel-overview" class="results-tabpanel" role="tabpanel" aria-labelledby="tab-overview">
+                <h2 class="results-heading">Overview</h2>
+                <dl class="stats-grid">
+                    <div class="stat">
+                        <dt class="stat-label">Username</dt>
+                        <dd class="stat-value" id="playerName">—</dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-label">UUID</dt>
+                        <dd class="stat-value stat-mono" id="playerId">—</dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-label">Rank</dt>
+                        <dd class="stat-value"><span class="rank-pill" id="playerRank">—</span></dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-label">Network level</dt>
+                        <dd class="stat-value" id="playerLevel">—</dd>
+                    </div>
+                    <div class="stat stat-full">
+                        <dt class="stat-label">Session</dt>
+                        <dd class="stat-value"><span class="session-badge" id="playerSession">—</span></dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-label">Karma</dt>
+                        <dd class="stat-value" id="playerKarma">—</dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-label">First login</dt>
+                        <dd class="stat-value" id="playerFirstLogin">—</dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-label">Last login</dt>
+                        <dd class="stat-value" id="playerLastLogin">—</dd>
+                    </div>
+                </dl>
+            </div>
+            <div id="panel-achievements" class="results-tabpanel" role="tabpanel" aria-labelledby="tab-achievements" hidden>
+                <h2 class="results-heading">Achievements</h2>
+                <dl class="stats-grid">
+                    <div class="stat stat-full">
+                        <dt class="stat-label">Achievement points</dt>
+                        <dd class="stat-value" id="playerAchievementPoints">—</dd>
+                    </div>
+                    <div class="stat stat-full">
+                        <dt class="stat-label">One-time achievements</dt>
+                        <dd class="achievements-dd">
+                            <p class="achievements-count-line"><span id="oneTimeAchievementsCount">0</span> unlocked</p>
+                            <ul class="achievements-list achievements-list-tab" id="achievementsOneTimeList" aria-label="One-time achievements"></ul>
+                        </dd>
+                    </div>
+                    <div class="stat stat-full">
+                        <dt class="stat-label">Tiered achievements</dt>
+                        <dd class="tiered-dd">
+                            <details class="tiered-achievements-details">
+                                <summary class="tiered-summary"><span id="tieredAchievementsCount">0</span> tracks</summary>
+                                <ul class="tiered-list tiered-list-tab" id="achievementsTieredList"></ul>
+                            </details>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
         </section>
     </main>
 
