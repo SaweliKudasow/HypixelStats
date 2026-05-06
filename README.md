@@ -48,4 +48,4 @@ Enter a Minecraft username in the UI and submit to fetch profile data from Hypix
 ## Troubleshooting
 
 - **500 errors or API failures:** Check that `token.json` exists, is valid JSON, and contains a working Hypixel API key.
-- **Port in use:** The app listens on port `3000` by default. Change `port` in `server.js` if needed.
+- **Port in use:** The app listens on port `3010` by default. Change `port` in `server.js` if needed.
